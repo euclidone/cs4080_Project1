@@ -3,4 +3,4 @@ project(cs4080_individual_project)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(cs4080_individual_project main.cpp tools.h Stack_2d.cpp Stack_2d.h)
+add_executable(cs4080_individual_project main.cpp tools.h Stack_2D.cpp)

@@ -55,8 +55,8 @@ build CMakeFiles/cs4080_individual_project.dir/main.cpp.obj: CXX_COMPILER__cs408
   OBJECT_DIR = CMakeFiles\cs4080_individual_project.dir
   OBJECT_FILE_DIR = CMakeFiles\cs4080_individual_project.dir
 
-build CMakeFiles/cs4080_individual_project.dir/Stack_2d.cpp.obj: CXX_COMPILER__cs4080_individual_project_Debug C$:/Users/Angel/CLionProjects/cs4080_individual_project/Stack_2d.cpp || cmake_object_order_depends_target_cs4080_individual_project
-  DEP_FILE = CMakeFiles\cs4080_individual_project.dir\Stack_2d.cpp.obj.d
+build CMakeFiles/cs4080_individual_project.dir/Stack_2D.cpp.obj: CXX_COMPILER__cs4080_individual_project_Debug C$:/Users/Angel/CLionProjects/cs4080_individual_project/Stack_2D.cpp || cmake_object_order_depends_target_cs4080_individual_project
+  DEP_FILE = CMakeFiles\cs4080_individual_project.dir\Stack_2D.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\cs4080_individual_project.dir
   OBJECT_FILE_DIR = CMakeFiles\cs4080_individual_project.dir
@@ -69,7 +69,7 @@ build CMakeFiles/cs4080_individual_project.dir/Stack_2d.cpp.obj: CXX_COMPILER__c
 #############################################
 # Link the executable cs4080_individual_project.exe
 
-build cs4080_individual_project.exe: CXX_EXECUTABLE_LINKER__cs4080_individual_project_Debug CMakeFiles/cs4080_individual_project.dir/main.cpp.obj CMakeFiles/cs4080_individual_project.dir/Stack_2d.cpp.obj
+build cs4080_individual_project.exe: CXX_EXECUTABLE_LINKER__cs4080_individual_project_Debug CMakeFiles/cs4080_individual_project.dir/main.cpp.obj CMakeFiles/cs4080_individual_project.dir/Stack_2D.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\cs4080_individual_project.dir

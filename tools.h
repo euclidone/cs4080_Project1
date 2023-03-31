@@ -8,6 +8,7 @@
 #include <sstream>
 #include <vector>
 using namespace std;
+
 int inputInteger(string prompt, int startRange, int endRange)
 {
     int input;
@@ -29,27 +30,25 @@ int inputInteger(string prompt, int startRange, int endRange)
     cin.ignore(999, '\n');
     return input;
 }
-string inputFile(string prompt)
+
+bool inputFile(string input)
 {
-    string input = "";
-
-    cout << prompt;
-
-    getline(cin, input);
     ifstream file(input);
     if (file.good())
-        return input;
+        return true;
     else
     {
-        cout << "\n\tERROR: Not a valid file.";
+        cout << "\nERROR: Not a valid file.";
+        return false;
     }
 }
 
-vector<vector<int>> read_matrix(ifstream& file) {
+vector<vector<float>> read_matrix(ifstream& file)
+{
     int rows, cols;
     file >> rows >> cols;
 
-    vector<vector<int>> matrix(rows, vector<int>(cols));
+    vector<vector<float>> matrix(rows, vector<float>(cols));
 
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
@@ -57,6 +56,28 @@ vector<vector<int>> read_matrix(ifstream& file) {
         }
     }
     return matrix;
+}
+
+void get_matrix(float **&arr, int size)
+{
+    arr = new float*[size];
+    for (int i = 0; i < size; i++)
+    {
+        arr[i] = new float[size];
+        for (int j = 0; j < size; j++)
+        {
+            cout << "Enter value at [" << i << "][" << j << "]:";
+            cin >> arr[i][j];
+            cin.ignore();
+        }
+    }
+}
+
+void delete_matrix(float **&arr, int size)
+{
+    for (int i = 0; i < size; i++)
+        delete [] arr[i];
+    delete [] arr;
 }
 
 #endif //CS4080_INDIVIDUAL_PROJECT_TOOLS_H
