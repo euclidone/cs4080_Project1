@@ -5,8 +5,6 @@
 #include <vector>
 using namespace std;
 
-const int MAX_SIZE = 100;
-
 class Stack_2D{
 private:
     int num_rows, num_cols;

@@ -9,6 +9,8 @@
 #include <vector>
 using namespace std;
 
+const int MAX_SIZE = 100;
+
 int inputInteger(string prompt, int startRange, int endRange)
 {
     int input;
@@ -58,12 +60,10 @@ vector<vector<float>> read_matrix(ifstream& file)
     return matrix;
 }
 
-void get_matrix(float **&arr, int size)
+void get_matrix(float arr[][MAX_SIZE], int size)
 {
-    arr = new float*[size];
     for (int i = 0; i < size; i++)
     {
-        arr[i] = new float[size];
         for (int j = 0; j < size; j++)
         {
             cout << "Enter value at [" << i << "][" << j << "]:";
@@ -79,5 +79,28 @@ void delete_matrix(float **&arr, int size)
         delete [] arr[i];
     delete [] arr;
 }
+
+float** create_arr(int size) 
+{
+    float** arr = new float*[size];
+    for (int i = 0; i < size; i++) 
+        arr[i] = new float[size];
+    
+    return arr;
+}
+
+float** convert_arr(float arr[][MAX_SIZE], int size)
+{
+    float** temp = new float*[size];
+    
+    for (int i = 0; i < size; i++)
+    {
+        temp[i] = new float[size];
+        for(int j = 0; j < size; j++)
+            temp[i][j] = arr[i][j];
+    }
+    return temp;
+}
+
 
 #endif //CS4080_INDIVIDUAL_PROJECT_TOOLS_H
