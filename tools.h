@@ -33,33 +33,6 @@ int inputInteger(string prompt, int startRange, int endRange)
     return input;
 }
 
-bool inputFile(string input)
-{
-    ifstream file(input);
-    if (file.good())
-        return true;
-    else
-    {
-        cout << "\nERROR: Not a valid file.";
-        return false;
-    }
-}
-
-vector<vector<float>> read_matrix(ifstream& file)
-{
-    int rows, cols;
-    file >> rows >> cols;
-
-    vector<vector<float>> matrix(rows, vector<float>(cols));
-
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            file >> matrix[i][j];
-        }
-    }
-    return matrix;
-}
-
 void get_matrix(float arr[][MAX_SIZE], int size)
 {
     for (int i = 0; i < size; i++)
@@ -73,33 +46,37 @@ void get_matrix(float arr[][MAX_SIZE], int size)
     }
 }
 
-void delete_matrix(float **&arr, int size)
-{
-    for (int i = 0; i < size; i++)
-        delete [] arr[i];
-    delete [] arr;
-}
+pair<vector<vector<float>>, vector<vector<float>>> readMatricesFromFile(string filename) {
+    // Open file for reading
+    ifstream file(filename);
 
-float** create_arr(int size) 
-{
-    float** arr = new float*[size];
-    for (int i = 0; i < size; i++) 
-        arr[i] = new float[size];
-    
-    return arr;
-}
+    // Read first matrix size
+    int size1;
+    file >> size1;
 
-float** convert_arr(float arr[][MAX_SIZE], int size)
-{
-    float** temp = new float*[size];
-    
-    for (int i = 0; i < size; i++)
-    {
-        temp[i] = new float[size];
-        for(int j = 0; j < size; j++)
-            temp[i][j] = arr[i][j];
+    // Read first matrix values
+    vector<vector<float>> matrix1(size1, vector<float>(size1));
+    for (int i = 0; i < size1; i++) {
+        for (int j = 0; j < size1; j++) {
+            file >> matrix1[i][j];
+        }
     }
-    return temp;
+
+    // Read second matrix size
+    int size2;
+    file >> size2;
+
+    // Read second matrix values
+    vector<vector<float>> matrix2(size2, vector<float>(size2));
+    for (int i = 0; i < size2; i++) {
+        for (int j = 0; j < size2; j++) {
+            file >> matrix2[i][j];
+        }
+    }
+
+    // Close file
+    file.close();
+    return make_pair(matrix1, matrix2);
 }
 
 

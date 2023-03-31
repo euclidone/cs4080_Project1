@@ -5,13 +5,13 @@
 #include <iostream>
 using namespace std;
 
-class Pointers{
+class Double_Pointer{
 private:
     int array_size;
     float **matrix;
 
 public:
-    Pointers(int size)
+    Double_Pointer(int size)
     {
         array_size = size;
 
@@ -20,7 +20,7 @@ public:
             matrix[i] = new float[array_size];
     }
 
-    ~Pointers()
+    ~Double_Pointer()
     {
         for(int i = 0; i < array_size; i++)
             delete[] matrix[i];
@@ -41,9 +41,9 @@ public:
         return matrix[index];
     }
 
-    Pointers add(const Pointers& A, const Pointers& B, int size)
+    Double_Pointer add(const Double_Pointer& A, const Double_Pointer& B, int size)
     {
-        Pointers result(size);
+        Double_Pointer result(size);
         for(int i = 0; i < size; i++)
         {
             for(int j = 0; j < size; j++)
@@ -52,9 +52,9 @@ public:
         return result;
     }
 
-    Pointers sub(const Pointers& A, const Pointers& B, int size)
+    Double_Pointer sub(const Double_Pointer& A, const Double_Pointer& B, int size)
     {
-        Pointers result(size);
+        Double_Pointer result(size);
         for(int i = 0; i < size; i++)
         {
             for(int j = 0; j < size; j++)
@@ -63,9 +63,9 @@ public:
         return result;
     }
 
-    Pointers mul(const Pointers& A, const Pointers& B, int size)
+    Double_Pointer mul(const Double_Pointer& A, const Double_Pointer& B, int size)
     {
-        Pointers result(size);
+        Double_Pointer result(size);
         for(int i = 0; i < size; i++)
         {
             for(int j = 0; j < size; j++)

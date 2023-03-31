@@ -1,7 +1,7 @@
 #include <iostream>
 #include "tools.h"
 #include "Stack_2D.cpp"
-#include "Pointers.cpp"
+#include "Double_Pointer.cpp"
 #include <fstream>
 using namespace std;
 
@@ -43,16 +43,26 @@ int main()
                 // Make sure the row and column size is in the first line followed by the elements of the matrix
                 cout << "Please enter the name of the file: ";
                 cin >> file;
+                file = R"(C:\Users\Angel\CLionProjects\cs4080_individual_project\)" + file;
 
-                if(!inputFile(file))
-                    continue;
-                else
+                pair<vector<vector<float>>, vector<vector<float>>> matrices = readMatricesFromFile(file);
+                vector<vector<float>> v1 = matrices.first;
+                vector<vector<float>> v2 = matrices.second;
+
+                int size = v1.size();
+
+                float matrix1[MAX_SIZE][MAX_SIZE];
+                float matrix2[MAX_SIZE][MAX_SIZE];
+                for (int i = 0; i < size; i++)
                 {
-                    ifstream file_name(file);
-                    vector<vector<float>> matrix1 = read_matrix(file_name);
-                    vector<vector<float>> matrix2 = read_matrix(file_name);
-                    break;
+                    for (int j = 0; j < size; j++)
+                    {
+                        matrix1[i][j] = v1[i][j];
+                        matrix2[i][j] = v2[i][j];
+                    }
                 }
+                secondary_menu(matrix1, matrix2, size);
+                break;
             }
             default:
                 cout << "\t\tERROR - Invalid option. Please re-enter.";
@@ -115,39 +125,39 @@ void option1(float matrix1[][MAX_SIZE], float matrix2[][MAX_SIZE], int size)
         switch (option)
         {
             case 0: exit(1); break;
-            case 1: {
+            case 1:
+            {
                 Stack_2D stack1(size, size);
-                for (int i = 0; i < size; i++)
-                    for (int j = 0; j < size; j++)
-                        stack1.push(i, j, matrix1[i][j]);
-                cout << "\nMatrix 1\n";
-                stack1.print();
-
                 Stack_2D stack2(size, size);
                 for (int i = 0; i < size; i++)
                     for (int j = 0; j < size; j++)
+                    {
+                        stack1.push(i, j, matrix1[i][j]);
                         stack2.push(i, j, matrix2[i][j]);
+                    }
+                cout << "\nMatrix 1\n";
+                stack1.print();
+
                 cout << "\nMatrix 2\n";
                 stack2.print();
 
                 cout << "\nResult of Operation\n";
                 stack1.add(stack2, size);
-
                 break;
             }
             case 2:
             {
                 Stack_2D stack1(size, size);
-                for (int i = 0; i < size; i++)
-                    for (int j = 0; j < size; j++)
-                        stack1.push(i, j, matrix1[i][j]);
-                cout << "\nMatrix 1\n";
-                stack1.print();
-
                 Stack_2D stack2(size, size);
                 for (int i = 0; i < size; i++)
                     for (int j = 0; j < size; j++)
+                    {
+                        stack1.push(i, j, matrix1[i][j]);
                         stack2.push(i, j, matrix2[i][j]);
+                    }
+                cout << "\nMatrix 1\n";
+                stack1.print();
+
                 cout << "\nMatrix 2\n";
                 stack2.print();
 
@@ -158,16 +168,16 @@ void option1(float matrix1[][MAX_SIZE], float matrix2[][MAX_SIZE], int size)
             case 3:
             {
                 Stack_2D stack1(size, size);
-                for (int i = 0; i < size; i++)
-                    for (int j = 0; j < size; j++)
-                        stack1.push(i, j, matrix1[i][j]);
-                cout << "\nMatrix 1\n";
-                stack1.print();
-
                 Stack_2D stack2(size, size);
                 for (int i = 0; i < size; i++)
                     for (int j = 0; j < size; j++)
+                    {
+                        stack1.push(i, j, matrix1[i][j]);
                         stack2.push(i, j, matrix2[i][j]);
+                    }
+                cout << "\nMatrix 1\n";
+                stack1.print();
+
                 cout << "\nMatrix 2\n";
                 stack2.print();
 
@@ -203,63 +213,63 @@ void option2(float matrix1[][MAX_SIZE], float matrix2[][MAX_SIZE], int size)
             case 0: exit(1); break;
             case 1:
             {
-                Pointers pointer_arr1(size);
+                Double_Pointer pointer_arr1(size);
+                Double_Pointer pointer_arr2(size);
                 for (int i = 0; i < size; i++)
                     for (int j = 0; j < size; j++)
+                    {
                         pointer_arr1[i][j] = matrix1[i][j];
+                        pointer_arr2[i][j] = matrix2[i][j];
+                    }
                 cout << "\nMatrix 1\n";
                 pointer_arr1.print();
 
-                Pointers pointer_arr2(size);
-                for (int i = 0; i < size; i++)
-                    for (int j = 0; j < size; j++)
-                        pointer_arr2[i][j] = matrix2[i][j];
                 cout << "\nMatrix 2\n";
                 pointer_arr2.print();
 
-                Pointers pointer_arr3 = pointer_arr1.add(pointer_arr1, pointer_arr2, size);
+                Double_Pointer pointer_arr3 = pointer_arr1.add(pointer_arr1, pointer_arr2, size);
                 cout << "\nResult of Operation\n";
                 pointer_arr3.print();
-
                 break;
             }
             case 2:
             {
-                Pointers pointer_arr1(size);
+                Double_Pointer pointer_arr1(size);
+                Double_Pointer pointer_arr2(size);
                 for (int i = 0; i < size; i++)
                     for (int j = 0; j < size; j++)
+                    {
                         pointer_arr1[i][j] = matrix1[i][j];
+                        pointer_arr2[i][j] = matrix2[i][j];
+                    }
                 cout << "\nMatrix 1\n";
                 pointer_arr1.print();
 
-                Pointers pointer_arr2(size);
-                for (int i = 0; i < size; i++)
-                    for (int j = 0; j < size; j++)
-                        pointer_arr2[i][j] = matrix2[i][j];
                 cout << "\nMatrix 2\n";
                 pointer_arr2.print();
 
-                Pointers pointer_arr3 = pointer_arr1.sub(pointer_arr1, pointer_arr2, size);
+                Double_Pointer pointer_arr3 = pointer_arr1.sub(pointer_arr1, pointer_arr2, size);
                 cout << "\nResult of Operation\n";
                 pointer_arr3.print();
                 break;
             }
             case 3:
-            {                Pointers pointer_arr1(size);
+            {
+                Double_Pointer pointer_arr1(size);
+                Double_Pointer pointer_arr2(size);
                 for (int i = 0; i < size; i++)
                     for (int j = 0; j < size; j++)
+                    {
                         pointer_arr1[i][j] = matrix1[i][j];
+                        pointer_arr2[i][j] = matrix2[i][j];
+                    }
                 cout << "\nMatrix 1\n";
                 pointer_arr1.print();
 
-                Pointers pointer_arr2(size);
-                for (int i = 0; i < size; i++)
-                    for (int j = 0; j < size; j++)
-                        pointer_arr2[i][j] = matrix2[i][j];
                 cout << "\nMatrix 2\n";
                 pointer_arr2.print();
 
-                Pointers pointer_arr3 = pointer_arr1.mul(pointer_arr1, pointer_arr2, size);
+                Double_Pointer pointer_arr3 = pointer_arr1.mul(pointer_arr1, pointer_arr2, size);
                 cout << "\nResult of Operation\n";
                 pointer_arr3.print();
                 break;

@@ -3,4 +3,4 @@ project(cs4080_individual_project)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(cs4080_individual_project main.cpp tools.h Stack_2D.cpp Pointers.cpp)
+add_executable(cs4080_individual_project main.cpp tools.h Stack_2D.cpp Double_Pointer.cpp Private_DPointer.cpp)
