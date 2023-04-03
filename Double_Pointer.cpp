@@ -6,15 +6,13 @@
 using namespace std;
 
 class Double_Pointer{
-private:
+public:
     int array_size;
     float **matrix;
 
-public:
     Double_Pointer(int size)
     {
         array_size = size;
-
         matrix = new float*[array_size];
         for(int i = 0; i < array_size; i++)
             matrix[i] = new float[array_size];

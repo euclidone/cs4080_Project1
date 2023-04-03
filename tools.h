@@ -46,15 +46,13 @@ void get_matrix(float arr[][MAX_SIZE], int size)
     }
 }
 
-pair<vector<vector<float>>, vector<vector<float>>> readMatricesFromFile(string filename) {
-    // Open file for reading
+pair<vector<vector<float>>, vector<vector<float>>> readMatricesFromFile(string filename)
+{
     ifstream file(filename);
 
-    // Read first matrix size
     int size1;
     file >> size1;
 
-    // Read first matrix values
     vector<vector<float>> matrix1(size1, vector<float>(size1));
     for (int i = 0; i < size1; i++) {
         for (int j = 0; j < size1; j++) {
@@ -62,22 +60,16 @@ pair<vector<vector<float>>, vector<vector<float>>> readMatricesFromFile(string f
         }
     }
 
-    // Read second matrix size
     int size2;
     file >> size2;
 
-    // Read second matrix values
     vector<vector<float>> matrix2(size2, vector<float>(size2));
     for (int i = 0; i < size2; i++) {
         for (int j = 0; j < size2; j++) {
             file >> matrix2[i][j];
         }
     }
-
-    // Close file
     file.close();
     return make_pair(matrix1, matrix2);
 }
-
-
 #endif //CS4080_INDIVIDUAL_PROJECT_TOOLS_H
